@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-// Счастливые билеты
+// Lucky tickets
 void luckyTickets() {
     int array[28] = { 0 };
     for (int i = 0; i < 10; i++) {
@@ -22,7 +22,7 @@ void luckyTickets() {
     printf("----------\nСчастливые билеты: %d\n----------", result);
 }
 
-// Две переменные
+// Two variables
 void swap(int* left, int* right) {
     if (left != right) {
         *left ^= *right;
@@ -37,7 +37,7 @@ void twoVariables() {
     printf("\nДве переменные:\n Входные данные: a = 1, b = 3\n Выходные данные: a = %d, b = %d\n----------", a, b);
 }
 
-// Нулевые элементы
+// Null Elements
 void nullElements(int array[]) {
     int counter = 0;
     while (array[counter] == 0) {
@@ -46,7 +46,7 @@ void nullElements(int array[]) {
     printf("\nНулевые элементы:\n Размер массива: %d\n----------", counter);
 }
 
-// Неполное частное
+// Incomplete quotient
 int incompleteQuotient(const int a, const int b, int* errorCode) {
     if (b == 0) {
         *errorCode = 1;
@@ -70,7 +70,7 @@ int incompleteQuotient(const int a, const int b, int* errorCode) {
     }
 }
 
-// Баланс скобок
+// Balance Of brackets
 void balanceOfBrackets(const char string[]) {
     int counter = 0;
     int indexCounter = 0;
@@ -94,7 +94,7 @@ void balanceOfBrackets(const char string[]) {
     }
 }
 
-// Простые числа
+// Prime numbers
 void primeNumbers(int theGivenNumber) {
     printf("\nПростые числа:\n");
     for (int number = 2; number <= theGivenNumber; ++number) {
@@ -112,7 +112,7 @@ void primeNumbers(int theGivenNumber) {
     printf("\n----------");
 }
 
-// Подстрока
+// Substring
 int countString(const char* string, const char* substring) {
     int stringLen = strlen(string);
     const int substringLen = strlen(substring);
@@ -131,7 +131,7 @@ int countString(const char* string, const char* substring) {
     return counter;
 }
 
-// Массив
+// Array
 int lenghArray(int array[]) {
     int counter = 0;
     while (array[counter] != '\0') {

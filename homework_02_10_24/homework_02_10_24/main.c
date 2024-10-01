@@ -18,30 +18,7 @@ void printArray(int array[], int lengh) {
     }
 }
 
-// Для себя
-// int byMatrixMultiplication(int n) {
-//     int matrix[] = {
-//         1, 1,
-//         1, 0
-//     };
-//     int matrixForMultiplication[] = {
-//         1, 1,
-//         1, 0
-//     };
-//     for (int i = 0; i < n; ++i) {
-//         for (int j = 0; j <= 2; j += 2) {
-//             int a = 0, b = 0;
-//             a = matrix[j] * matrixForMultiplication[0] + matrix[j + 1] * matrixForMultiplication[2];
-//             b = matrix[j] * matrixForMultiplication[1] + matrix[j + 1] * matrixForMultiplication[3];
-//             matrix[j] = a;
-//             matrix[j + 1] = b;
-//         }
-//     }
-
-//     printf("\n%d %d\n%d %d", matrix[0], matrix[1], matrix[2], matrix[3]);
-// }
-
-// Полукусорт
+// Half QSort
 void fillArray(int array[], int lengh) {
     for (int i = 0; i < lengh; ++i) {
         array[i] = rand();
@@ -64,8 +41,8 @@ void halfQSort(int array[], int lengh) {
     }
 }
 void wrapperHalfQSort() {
-    int array[10] = { -3, 1, 4, -5, 8, 7, 3, 5, 8, -4 };
-    //fillArray(array, 10);
+    int array[10] = { 0 };
+    fillArray(array, 10);
     int supportingElement = array[0];
     halfQSort(array, 10);
     printf("----------\nHalfQSort\n Supporting element: %d\n", supportingElement);
@@ -75,7 +52,7 @@ void wrapperHalfQSort() {
 
 
 
-// Пузырёк и подсчёт
+// Bubble and counting
 float bubbleSort(int array[], int lengh) {
     clock_t timeCounter = clock();
     for (int i = 0; i + 1 < lengh; ++i) {
@@ -122,8 +99,8 @@ void bubbleAndCouting() {
         bubbleSort(array, lengh), countingSort(array, lengh));
 }
 
-// Возведение в степень
-float ordinaryExponentiation(int number, int degree) {
+// Raising to a power
+float raisingToAPower(int number, int degree) {
     float result = 1;
     for (int i = 0; i < abs(degree); ++i) {
         result *= number;
@@ -135,7 +112,7 @@ float ordinaryExponentiation(int number, int degree) {
         return (1 / result);
     }
 }
-float fastExponentiation(int number, int degree) {
+float fastRaisingToAPower(int number, int degree) {
     float result = 1;
     int degreeAbs = abs(degree);
     while (degreeAbs) {
@@ -157,7 +134,7 @@ float fastExponentiation(int number, int degree) {
 
 }
 
-// Числа Фибоначчи
+// Numbers Fibonacci
 int recursivelyFibonacci(int number) {
     if (number == 0) {
         return 0;
@@ -195,7 +172,7 @@ void fibonacci() {
         (float)timeCounter2 / CLOCKS_PER_SEC);
 }
 
-// Тесты
+// Tests
 bool arrayComparison(int array1[], int array2[], int lenghs) {
     for (int i = 0; i < lenghs; ++i) {
         if (array1[i] != array2[i]) {
@@ -221,15 +198,15 @@ bool testCoutingSort() {
     countingSort(array, 5);
     return arrayComparison(array, sortedArray, 5);
 }
-bool testOrdinaryExponentiation() {
-    return ((ordinaryExponentiation(10, 2) == 100) && (ordinaryExponentiation(10, 0) == 1) && (ordinaryExponentiation(-10, 1) == -10)
-        && (ordinaryExponentiation(10, -1) == 0, 1) && (ordinaryExponentiation(10, 1) == 10) && (ordinaryExponentiation(-10, 2) == 100)
-        && (ordinaryExponentiation(-10, -1) == -0, 1) && (ordinaryExponentiation(-10, -2) == -0, 01));
+bool testRaisingToAPower() {
+    return ((raisingToAPower(10, 2) == 100) && (raisingToAPower(10, 0) == 1) && (raisingToAPower(-10, 1) == -10)
+        && (raisingToAPower(10, -1) == 0, 1) && (raisingToAPower(10, 1) == 10) && (raisingToAPower(-10, 2) == 100)
+        && (raisingToAPower(-10, -1) == -0, 1) && (raisingToAPower(-10, -2) == -0, 01));
 }
-bool testFastExponentiation() {
-    return ((fastExponentiation(10, 2) == 100) && (fastExponentiation(10, 0) == 1) && (fastExponentiation(-10, 2) == 100)
-        && (fastExponentiation(10, -1) == 0, 1) && (fastExponentiation(10, 1) == 10) && (fastExponentiation(-10, 1) == -10)
-        && (fastExponentiation(-10, -1) == -0, 1) && (fastExponentiation(-10, -2) == -0, 01));
+bool testFastRaisingToAPower() {
+    return ((fastRaisingToAPower(10, 2) == 100) && (fastRaisingToAPower(10, 0) == 1) && (fastRaisingToAPower(-10, 2) == 100)
+        && (fastRaisingToAPower(10, -1) == 0, 1) && (fastRaisingToAPower(10, 1) == 10) && (fastRaisingToAPower(-10, 1) == -10)
+        && (fastRaisingToAPower(-10, -1) == -0, 1) && (fastRaisingToAPower(-10, -2) == -0, 01));
 }
 bool testRecursivelyFibonacci() {
     int array[10] = { 0 }, arrayFibonacciNumbers[] = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 };
@@ -246,20 +223,20 @@ bool testIterativelyFibonacci() {
     return arrayComparison(array, arrayFibonacciNumbers, 10);
 }
 bool testProgram() {
-    return testBubbleSort() && testCoutingSort() && testOrdinaryExponentiation() && testFastExponentiation()
+    return testBubbleSort() && testCoutingSort() && testRaisingToAPower() && testFastRaisingToAPower()
         && testRecursivelyFibonacci() && testIterativelyFibonacci() && testHalfQSort();
 }
 
 int main(void) {
-    /*if (!testProgram()) {
+    if (!testProgram()) {
         printf("\nTest failed");
         return 0;
-    }*/
+    }
     printf("\nPlease wait\n");
     wrapperHalfQSort();
     bubbleAndCouting();
     printf("\nRaising to a power\n Ordinary: %f\n Fast: %f\n----------",
-        ordinaryExponentiation(-10, -1),
-        fastExponentiation(-10, -1));
+        raisingToAPower(-10, -1),
+        fastRaisingToAPower(-10, -1));
     fibonacci();
 }
