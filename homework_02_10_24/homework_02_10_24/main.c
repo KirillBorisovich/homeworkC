@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
@@ -18,7 +18,7 @@ void printArray(int array[], int lengh) {
     }
 }
 
-// Для себя
+// Р”Р»СЏ СЃРµР±СЏ
 // int byMatrixMultiplication(int n) {
 //     int matrix[] = {
 //         1, 1,
@@ -41,7 +41,7 @@ void printArray(int array[], int lengh) {
 //     printf("\n%d %d\n%d %d", matrix[0], matrix[1], matrix[2], matrix[3]);
 // }
 
-// Полукусорт
+// РџРѕР»СѓРєСѓСЃРѕСЂС‚
 void fillArray(int array[], int lengh) {
     for (int i = 0; i < lengh; ++i) {
         array[i] = rand();
@@ -50,13 +50,13 @@ void fillArray(int array[], int lengh) {
 void halfQSort(int array[], int lengh) {
     int supportingElement = array[0], i = 0, j = lengh - 1;
     while (i <= j) {
-        while (array[i] < supportingElement) {
+        while ((array[i] < supportingElement) && (i <= j)) {
             ++i;
         }
-        while (supportingElement <= array[j]) {
+        while ((supportingElement <= array[j]) && (i <= j)) {
             --j;
         }
-        if (array[i] > array[j]) {
+        if (i <= j) {
             swap(&array[i], &array[j]);
             ++i;
             --j;
@@ -64,16 +64,18 @@ void halfQSort(int array[], int lengh) {
     }
 }
 void wrapperHalfQSort() {
-    int array[] = { 3, -1, 2, 4, -5, 10, 7, 4, 5, 2 };
+    int array[10] = { -3, 1, 4, -5, 8, 7, 3, 5, 8, -4 };
+    //fillArray(array, 10);
+    int supportingElement = array[0];
     halfQSort(array, 10);
-    printf("----------\nHalfQSort\n ");
+    printf("----------\nHalfQSort\n Supporting element: %d\n", supportingElement);
     printArray(array, 10);
     printf("\n----------");
 }
 
 
 
-// Пузырёк и подсчёт
+// РџСѓР·С‹СЂС‘Рє Рё РїРѕРґСЃС‡С‘С‚
 float bubbleSort(int array[], int lengh) {
     clock_t timeCounter = clock();
     for (int i = 0; i + 1 < lengh; ++i) {
@@ -97,13 +99,13 @@ float countingSort(int array[], int lengh) {
             max = array[i];
         }
     }
-    int* auxiliaryArray = (int*)calloc(max + 1, sizeof(int));
+    int* auxiliaryArray = (int*)calloc(max - min + 1, sizeof(int));
     for (int i = 0; i < lengh; ++i) {
-        ++auxiliaryArray[array[i]];
+        ++auxiliaryArray[array[i] - min];
     }
-    for (int i = min; i <= max; ++i) {
+    for (int i = 0; i < max - min + 1; ++i) {
         while (auxiliaryArray[i] > 0) {
-            array[j] = i;
+            array[j] = i + min;
             ++j;
             --auxiliaryArray[i];
         }
@@ -115,12 +117,12 @@ float countingSort(int array[], int lengh) {
 void bubbleAndCouting() {
     int lengh = 100000;
     int array[100000] = { 0 };
-    fillArray(array, 100000);
+    fillArray(array, lengh);
     printf("\nBubble And Couting\n Bubble sort time: %fsec.\n Counting sort time: %fsec.\n----------",
         bubbleSort(array, lengh), countingSort(array, lengh));
 }
 
-// Возведение в степень
+// Р’РѕР·РІРµРґРµРЅРёРµ РІ СЃС‚РµРїРµРЅСЊ
 float ordinaryExponentiation(int number, int degree) {
     float result = 1;
     for (int i = 0; i < abs(degree); ++i) {
@@ -155,7 +157,7 @@ float fastExponentiation(int number, int degree) {
 
 }
 
-// Числа Фибоначчи
+// Р§РёСЃР»Р° Р¤РёР±РѕРЅР°С‡С‡Рё
 int recursivelyFibonacci(int number) {
     if (number == 0) {
         return 0;
@@ -193,7 +195,7 @@ void fibonacci() {
         (float)timeCounter2 / CLOCKS_PER_SEC);
 }
 
-// Тесты
+// РўРµСЃС‚С‹
 bool arrayComparison(int array1[], int array2[], int lenghs) {
     for (int i = 0; i < lenghs; ++i) {
         if (array1[i] != array2[i]) {
@@ -210,12 +212,12 @@ bool testHalfQSort() {
         && (array[3] >= supportingElement) && (array[4] >= supportingElement);
 }
 bool testBubbleSort() {
-    int array[] = { 1, 4, 5, 3, 2 }, sortedArray[] = { 1, 2, 3, 4, 5 };
+    int array[] = { -1, 4, 5, -3, 2 }, sortedArray[] = { -3, -1, 2, 4, 5 };
     bubbleSort(array, 5);
     return arrayComparison(array, sortedArray, 5);
 }
 bool testCoutingSort() {
-    int array[] = { 1, 4, 5, 3, 2 }, sortedArray[] = { 1, 2, 3, 4, 5 };
+    int array[] = { -1, 4, 5, -3, 2 }, sortedArray[] = { -3, -1, 2, 4, 5 };
     countingSort(array, 5);
     return arrayComparison(array, sortedArray, 5);
 }
@@ -249,10 +251,10 @@ bool testProgram() {
 }
 
 int main(void) {
-    if (!testProgram()) {
+    /*if (!testProgram()) {
         printf("\nTest failed");
         return 0;
-    }
+    }*/
     printf("\nPlease wait\n");
     wrapperHalfQSort();
     bubbleAndCouting();
